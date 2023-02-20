@@ -1,0 +1,11 @@
+{
+  "manifest_version": 2,
+  "name": "URL Tracker",
+  "version": "1.0",
+  "description": "Tracks the visited URLs in the browser.",
+  "permissions": ["tabs"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  }
+}
