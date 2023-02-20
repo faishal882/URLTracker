@@ -1,11 +1,20 @@
 {
-  "manifest_version": 2,
-  "name": "URL Tracker",
+  "name": "URLTracker",
   "version": "1.0",
+  "manifest_version": 3,
   "description": "Tracks the visited URLs in the browser.",
   "permissions": ["tabs"],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Tracker for visted website",
+    "default_popup": "window.html",
+    "default_icon": {
+      "24": "icon-24.png"
+    }
+  },
+  "icons": {
+    "24": "icon-24.png"
   }
 }

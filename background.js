@@ -56,22 +56,26 @@ function refreshTabList(visitedurls) {
 }
 
 function removeTab(tabs) {
-  const _tabs = tabs
-  // for (let i = 0; i < tabs.length; i++) {
-  //   if (tabs[i].timeSpent > 10) {
-  // chrome.tabs.remove(tabs[i].id, () => {
-  //   alert(`Removed tab ${tabs[i].url}`);
-  // });
-  //     tabs.splice(i, 1);
-  //   }
-  // }
-  _tabs.splice(1)
+  const _tabs = tabs;
+  for (let i = 0; i < _tabs.length; i++) {
+    if (_tabs[i].url !== "newtab") {
+      if (_tabs[i].timeSpent > 30 * 60) {
+        chrome.tabs.remove(_tabs[i].id, () => {
+          console.log(`removed ${_tabs[i].url}`);
+          _tabs.splice(i, 1);
+        });
+      }
+    }
+  }
 }
 
 getVisitedUrls();
 setInterval(() => {
   refreshTabList(visitedUrls);
   console.log(visitedUrls);
+}, 10000);
+
+setInterval(() => {
   removeTab(visitedUrls);
   console.log(visitedUrls);
 }, 10000);
